@@ -10,36 +10,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mediatheque.app.entities.Adherent;
 import com.mediatheque.app.entities.Oeuvre;
 import com.mediatheque.app.service.MediathequeApp;
 
 @RestController
 @CrossOrigin("http://localhost:8080")
-public class OeuvreServiceRest {
+public class AdherentServiceRest {
 	private MediathequeApp mediaApp;
-
-	public OeuvreServiceRest(MediathequeApp mediaApp) {
+	
+	
+	public AdherentServiceRest(MediathequeApp mediaApp) {
 		super();
 		this.mediaApp = mediaApp;
 	}
-	
-	@PostMapping("/ajouterOeuvre")
-	public Oeuvre ajouterOeuvre(@RequestBody Oeuvre oeuvre) {
-		return mediaApp.ajouterOeuvre(oeuvre);
+
+	@PostMapping("/ajouterAdherent")
+	public Adherent ajouterOeuvre(@RequestBody Adherent adherent) {
+		return mediaApp.ajouterAdherent(adherent);
 	}
 	
-	@GetMapping("/oeuvres")
-	public Collection<Oeuvre> getOeuvres(){
-		return mediaApp.listerOeuvres();
+	@GetMapping("/adherents")
+	public Collection<Adherent> getAdherents(){
+		return mediaApp.listerAdherents();
 	}
 	
-	@PostMapping("/modifierOeuvre")
+	@PostMapping("/modifierAdherent")
 	public Oeuvre modifierOeuvre(@RequestBody Oeuvre oeuvre){
 		return mediaApp.modifierOeuvre(oeuvre);
 	}
 	
-	@DeleteMapping("/deleteOeuvre/{id}")
+	@DeleteMapping("/deleteAdherent/{id}")
 	public void deleteOeuvre(@PathVariable long id){
-		mediaApp.supprimerOeuvre(id);;
+		mediaApp.supprimerAdherent(id);
 	}
 }

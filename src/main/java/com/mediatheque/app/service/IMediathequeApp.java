@@ -2,6 +2,7 @@ package com.mediatheque.app.service;
 
 import java.util.Collection;
 
+import com.mediatheque.app.entities.Adherent;
 import com.mediatheque.app.entities.Cd_Audio;
 import com.mediatheque.app.entities.Cd_Rom;
 import com.mediatheque.app.entities.Dvd_Rom;
@@ -15,6 +16,10 @@ public interface IMediathequeApp {
 	public Oeuvre ajouterOeuvre(Oeuvre oeuvre);
 	public Oeuvre modifierOeuvre(Oeuvre oeuvre);
 	public void supprimerOeuvre(long id);
+	public Adherent ajouterAdherent(Adherent adherent);
+	public Adherent modifierAdheren(Adherent adherent);
+	public void supprimerAdherent(long id);
+	public Collection<Adherent> listerAdherents();
 	public Collection<Oeuvre> listerOeuvres();
 	public Collection<Cd_Audio> listerCdAudio();
 	public Collection<Cd_Rom> listerCdRom();

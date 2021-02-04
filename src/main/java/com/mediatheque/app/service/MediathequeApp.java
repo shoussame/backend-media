@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.mediatheque.app.dao.AdherentRepo;
 import com.mediatheque.app.dao.CdAudioRepo;
 import com.mediatheque.app.dao.CdRomRepo;
 import com.mediatheque.app.dao.DvdRomRepo;
@@ -14,6 +15,7 @@ import com.mediatheque.app.dao.LivreRepo;
 import com.mediatheque.app.dao.OeuvreRepo;
 import com.mediatheque.app.dao.PretRepo;
 import com.mediatheque.app.dao.RevueRepo;
+import com.mediatheque.app.entities.Adherent;
 import com.mediatheque.app.entities.Cd_Audio;
 import com.mediatheque.app.entities.Cd_Rom;
 import com.mediatheque.app.entities.Dvd_Rom;
@@ -34,9 +36,10 @@ public class MediathequeApp implements IMediathequeApp{
 	private LivreRepo livreRepo;
 	private PretRepo pretRepo;
 	private RevueRepo revueRepo;
+	private AdherentRepo adherentRepo;
 	
 	public MediathequeApp(OeuvreRepo oeuvreRepo, CdAudioRepo cdAudioRepo, CdRomRepo cdRomRepo, DvdRomRepo dvdRomRepo,
-			DvdVideoRepo dvdVideoRepo, LivreRepo livreRepo, PretRepo pretRepo, RevueRepo revueRepo) {
+			DvdVideoRepo dvdVideoRepo, LivreRepo livreRepo, PretRepo pretRepo, RevueRepo revueRepo, AdherentRepo adherentRepo) {
 		super();
 		this.oeuvreRepo = oeuvreRepo;
 		this.cdAudioRepo = cdAudioRepo;
@@ -46,6 +49,7 @@ public class MediathequeApp implements IMediathequeApp{
 		this.livreRepo = livreRepo;
 		this.pretRepo = pretRepo;
 		this.revueRepo = revueRepo;
+		this.adherentRepo = adherentRepo;
 	}
 	@Override
 	public Oeuvre ajouterOeuvre(Oeuvre oeuvre) {
@@ -106,6 +110,26 @@ public class MediathequeApp implements IMediathequeApp{
 	@Override
 	public void supprimerOeuvre(long id) {
 		oeuvreRepo.deleteById(id);		
+	}
+	@Override
+	public Adherent ajouterAdherent(Adherent adherent) {
+		return adherentRepo.save(adherent);
+	}
+	@Override
+	public Adherent modifierAdheren(Adherent oeuvre) {
+		Adherent tempo = adherentRepo.getOne(oeuvre.getId());
+		tempo.setId(oeuvre.getId());
+		tempo.setNom(oeuvre.getNom());
+		tempo.setEmail(oeuvre.getEmail());
+		return adherentRepo.save(tempo);
+	}
+	@Override
+	public void supprimerAdherent(long id) {
+		adherentRepo.deleteById(id);
+	}
+	@Override
+	public Collection<Adherent> listerAdherents() {
+		return adherentRepo.findAll();
 	}
 
 }

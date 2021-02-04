@@ -21,7 +21,7 @@ import javax.persistence.OneToOne;
 public class Pret {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private Date dateEmprunt;
+	private String dateEmprunt;
 	@OneToOne(fetch = FetchType.LAZY)
 	private Oeuvre oeuvre;
 }

@@ -16,4 +16,13 @@ public class Adherent {
 	private String nom;
 	private String prenom;
 	private String email;
+	private String cin;
+	public Adherent(String nom, String prenom, String email,String cin) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.cin= cin;
+	}
+	
 }
